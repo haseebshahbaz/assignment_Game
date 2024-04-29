@@ -1,133 +1,56 @@
-// Question # 1
-function calculateStringLength(str) {
-  let length = 0;
-  for (let char of str) {
-      length++;
-  }
-  return length;
-}
+var user_number = document.getElementById("user_number");
+var random_number = document.getElementById("random_number");
+var result = document.getElementById("result");
+var info_box_result = document.getElementById("info_box_result");
+var win_html = document.getElementById("win");
+var loss_html = document.getElementById("loss");
+var total = document.getElementById("total");
+var msg = document.getElementById("msg");
 
-console.log(calculateStringLength("Hello, world!")); // Output: 13
+var count = 10;
+var win = 0;
+var loss = 0;
 
+function tryMyLuck(userNumber) {
+  // alert(userNumber);
+  var randomNumber = Math.random() * 6;
+  var ceil = Math.ceil(randomNumber);
+  console.log(ceil);
+  user_number.innerText = userNumber;
+  random_number.innerText = ceil;
 
-//Question #2
-
-function toUpperCase(str) {
-  let result = "";
-  for (let char of str) {
-      if (char >= "a" && char <= "z") {
-          result += String.fromCharCode(char.charCodeAt(0) - 32);
-      } else {
-          result += char;
-      }
-  }
-  return result;
-}
-
-console.log(toUpperCase("hello")); // Output: "HELLO"
-
-
-//Question # 3
-function toLowerCase(str) {
-  let result = "";
-  for (let char of str) {
-      if (char >= "A" && char <= "Z") {
-          result += String.fromCharCode(char.charCodeAt(0) + 32);
-      } else {
-          result += char;
-      }
-  }
-  return result;
-}
-
-console.log(toLowerCase("HELLO")); // Output: "hello"
-
-
-//Question # 4
-function countCharacter(str, char) {
-  let count = 0;
-  for (let c of str) {
-      if (c === char) {
-          count++;
-      }
-  }
-  return count;
-}
-
-console.log(countCharacter("hello world", "l")); // Output: 3
-
-
-//Question # 7
-function extractSubstring(str, start, end) {
-  return str.substring(start, end);
-}
-
-console.log(extractSubstring("Hello, world!", 3, 7)); // Output: "lo, "
-
-
-//Question # 12
-function capitalizeWords(str) {
-  return str.replace(/\b\w/g, char => char.toUpperCase());
-}
-
-console.log(capitalizeWords("hello world")); // Output: "Hello World"
-
-
-//Question # 13
-function trimWhitespace(str) {
-  return str.replace(/^\s+|\s+$/g, "");
-}
-
-console.log(trimWhitespace("   Hello, world!   ")); // Output: "Hello, world!"
-
-
-//Question # 14
-function compressString(str) {
-  let compressed = "";
-  let count = 1;
-
-  for (let i = 0; i < str.length; i++) {
-      if (str[i] === str[i + 1]) {
-          count++;
-      } else {
-          compressed += str[i] + count;
-          count = 1;
-      }
-  }
-  return compressed;
-}
-
-console.log(compressString("aaabbbccc")); // Output: "a3b3c3"
-
-
-//Question # 15
-function countVowelsAndConsonants(str) {
-  const vowels = "aeiouAEIOU";
-  let vowelCount = 0;
-  let consonantCount = 0;
-
-  for (let char of str) {
-      if (vowels.includes(char)) {
-          vowelCount++;
-      } else if (char.match(/[a-zA-Z]/)) {
-          consonantCount++;
-      }
-  }
-  return { vowels: vowelCount, consonants: consonantCount };
-}
-
-console.log(countVowelsAndConsonants("Hello, world!")); // Output: { vowels: 3, consonants: 7 }
-
-
-//Question # 16
-function extractSubstringFromIndex(str, start) {
-  return str.substring(start);
-}
-
-console.log(extractSubstringFromIndex("Hello, world!", 3)); // Output: "lo, world!"
-
-
-
-
-
+  // total count mein se aik minus krdo
+  total.innerText = --count;
   
+  if (ceil === userNumber) {
+    console.log("user wins");
+    result.innerText = "You won";
+    info_box_result.style.backgroundColor = "Green";
+    result.style.color = "White";
+    // total count mein se aik minus krdo
+    win_html.innerText = ++win;
+  } else {
+    result.innerText = "You Loss";
+    info_box_result.style.backgroundColor = "red";
+    result.style.color = "White";
+    loss_html.innerText = ++loss;
+  }
+
+  checkResult();
+}
+
+function checkResult() {
+  if (count == 0) {
+    if (win >= 3) {
+      msg.innerText = "Congrats! You won";
+    } else {
+      msg.innerText = "Sorry! You loss try again";
+    }
+    count = 10;
+    win = 0;
+    loss = 0;
+    total.innerText = count;
+    win_html.innerText = loss;
+    loss_html.innerText = win;
+  }
+}

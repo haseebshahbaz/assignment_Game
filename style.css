@@ -1,0 +1,46 @@
+body{
+    background-color: rgb(146, 255, 255);
+}
+
+h1{
+text-align: center;
+}
+
+
+.container{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0px auto;
+}
+
+.box{
+    height: 80px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    cursor: pointer;
+    
+}
+
+.box:hover {
+    background-color: burlywood;
+    color: white;
+}
+
+.info_box {
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+  .msg {
+    text-align: center;
+   
+}
